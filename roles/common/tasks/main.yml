@@ -2,3 +2,4 @@
 # tasks file for roles/common
 
 - include: system_config.yml
+- include: install_tools.yml

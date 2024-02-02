@@ -1,0 +1,8 @@
+---
+
+- name: "Ensure the existency of necessary tools"
+  apt: 
+    name: ['python3','python3-pip','git'] 
+    state: latest
+  tags: installation
+  

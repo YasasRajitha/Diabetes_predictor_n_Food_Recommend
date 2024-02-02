@@ -36,7 +36,7 @@
 - name: "Start gunicorn for Diabetic prediction"
   gunicorn:
     app: 'app:app'
-    chdir: "{{ playbook_dir }}/Diabetes_predict"
+    chdir: "{{ playbook_dir }}/Diabetes-predict"
     venv: "{{ playbook_dir }}"
     conf: "{{ playbook_dir }}/conf/gunicorn_conf_diabetic.py"
 

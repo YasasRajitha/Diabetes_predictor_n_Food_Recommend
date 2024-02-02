@@ -2,5 +2,6 @@
   become: true
   roles:
     - common
+    - app_files
     - gunicorn
     - nginx

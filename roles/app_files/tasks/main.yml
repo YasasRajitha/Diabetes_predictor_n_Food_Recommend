@@ -1,0 +1,4 @@
+---
+# tasks file for roles/app_files
+
+- include: config_files.yml

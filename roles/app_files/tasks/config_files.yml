@@ -1,0 +1,32 @@
+---
+
+- name: "Ensure git is present"
+  apt:
+    name: git
+    state: present
+  tags: installation
+
+- name: "clone diabetic predict git repo"
+  git:
+    repo: https://github.com/YasasRajitha/Diabetes_Predictor_ML.git
+    dest: "{{ playbook_dir }}/Diabetes-predict"
+    update: no
+    version: master
+
+- name: "clone Food Recommending git repo"
+  git:
+    repo: https://github.com/YasasRajitha/Food-recommender-flask-web-app.git
+    dest: "{{ playbook_dir }}/Food-recommender"
+    update: no
+    version: master
+
+- name: "Download necessary csvs"
+  get_url:
+    url: https://final-project-csvs.s3.ap-south-1.amazonaws.com/csv_files.zip
+    dest: "{{ playbook_dir }}/csv_files.zip"
+
+- name: "Extract necessary csvs to food recommend app"
+  unarchive:
+    src: "{{ playbook_dir }}/csv_files.zip"
+    dest: "{{ playbook_dir }}/Food-recommender/pre-processing"
+    remote_src: yes
