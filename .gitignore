@@ -1,0 +1,11 @@
+# created by virtualenv automatically
+
+.vscode/
+bin/
+conf/
+Diabetes_predict/
+Food-recommender/
+lib/
+venv/
+*.zip
+*.cfg

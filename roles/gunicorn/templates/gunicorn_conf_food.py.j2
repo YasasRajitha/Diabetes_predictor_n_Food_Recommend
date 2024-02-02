@@ -1,0 +1,5 @@
+command = '{{ gunicorn_location.stdout }}'
+pythonpath = '{{ playbook_dir }}'
+bind = 'localhost:5001'
+module = 'app:app'
+workers = 3

@@ -1,0 +1,4 @@
+---
+# tasks file for roles/gunicorn
+
+- include: config_gunicorn.yml

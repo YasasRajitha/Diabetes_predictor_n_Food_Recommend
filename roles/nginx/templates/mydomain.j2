@@ -1,0 +1,35 @@
+#upstream gunicorn_dynamic {
+#       server 127.0.0.1:5000;
+#       server 127.0.0.1:5001;
+#}
+
+server {
+        listen 85;
+        # server_name lit.lemon;
+
+        location / {
+            proxy_pass http://127.0.0.1:5000;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        }
+
+        location /foodapp {
+            proxy_pass http://127.0.0.1:5001;
+         }
+
+        location /static/ {
+            alias /home/yasraj6969/Documents/Diabetes_predict/static/;
+        }
+
+        location /foodapp/static/ {
+            alias /home/yasraj6969/Documents/Food-recommender/static/;
+        }
+
+        # location /static {
+        #     proxy_pass http://apache_server_static/static/;
+
+        # }
+
+
+}

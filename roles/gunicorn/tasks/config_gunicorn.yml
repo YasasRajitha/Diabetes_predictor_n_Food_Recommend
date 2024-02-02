@@ -1,0 +1,49 @@
+---
+
+- name: "create,install packages and activate virtual env"
+  pip:
+    requirements: "{{ playbook_dir }}/requirements.txt"
+    virtualenv: "{{ playbook_dir }}"
+  tags: always
+
+- name: "Find gunicorn location"
+  shell: |
+    source bin/activate
+    which gunicorn
+  args:
+    chdir: "{{ playbook_dir }}"
+    executable: /bin/bash
+  register: gunicorn_location
+
+- name: "create or ensure the existency of conf directory"
+  file:
+    path: "{{ playbook_dir }}/conf"
+    state: directory
+    mode: 0755
+
+- name: "copy diabetic gunicorn template to conf directory"
+  template:
+    src: gunicorn_conf_diabetic.py.j2
+    dest: "{{ playbook_dir }}/conf/gunicorn_conf_diabetic.py"
+  tags: always
+
+- name: "copy food gunicorn template to conf directory"
+  template:
+    src: gunicorn_conf_food.py.j2
+    dest: "{{ playbook_dir }}/conf/gunicorn_conf_food.py"
+  tags: always
+
+- name: "Start gunicorn for Diabetic prediction"
+  gunicorn:
+    app: 'app:app'
+    chdir: "{{ playbook_dir }}/Diabetes_predict"
+    venv: "{{ playbook_dir }}"
+    conf: "{{ playbook_dir }}/conf/gunicorn_conf_diabetic.py"
+
+- name: "Start gunicorn for Food Recommend"
+  gunicorn:
+    app: 'app:app'
+    chdir: "{{ playbook_dir }}/Food-recommender"
+    venv: "{{ playbook_dir }}"
+    conf: "{{ playbook_dir }}/conf/gunicorn_conf_food.py"
+
