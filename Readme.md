@@ -5,7 +5,7 @@ This includes an app that can predict diabetes by Glucose level, Insulin dose, B
 ## How to start this web application
 1. Clone the repo.
 ```shell
-https://github.com/YasasRajitha/Diabetes_predictor_n_Food_Recommend.git
+git clone https://github.com/YasasRajitha/Diabetes_predictor_n_Food_Recommend.git
 ```
 
 2. Install ansible.
