@@ -1,5 +1,12 @@
 ---
 
+- name: Install virtualenv
+  apt:
+    name: python3-virtualenv
+    state: present
+  become: true
+  when: ansible_os_family == "Debian"
+
 - name: "create,install packages and activate virtual env"
   pip:
     requirements: "{{ playbook_dir }}/requirements.txt"

@@ -13,11 +13,11 @@ server {
          }
 
         location /static/ {
-            alias /home/yasraj6969/Documents/Diabetes_predict/static/;
+            alias {{ playbook_dir }}/Diabetes-predict/static;
         }
 
         location /foodapp/static/ {
-            alias /home/yasraj6969/Documents/Food-recommender/static/;
+            alias {{ playbook_dir }}/Food-recommender/static/;
         }
 
 }
